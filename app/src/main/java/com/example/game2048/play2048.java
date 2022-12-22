@@ -37,32 +37,35 @@ public class play2048 extends Activity {
         super.onStop();
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            try{
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage("Do you want to leave this game!!").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        LuuQuatrinh();
-                        Intent startMain = new Intent(play2048.this, MainActivity.class);
-                        startMain.addCategory(Intent.CATEGORY_HOME);
-                        startActivity(startMain);
-                        finish();
-                    }
-                })
-                               .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                   public void onClick(DialogInterface dialog, int id) {
 
-                                   }
-                               }).show();
-            }catch (Exception e)
-            {
-                return true;
-            }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        try{
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Do you want to leave this game!!").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            LuuQuatrinh();
+                            Intent startMain = new Intent(play2048.this, MainActivity.class);
+                            startMain.addCategory(Intent.CATEGORY_HOME);
+                            startActivity(startMain);
+                            finish();
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                        }
+                    }).show();
+        }catch (Exception e)
+        {
+
         }
-        return super.onKeyDown(keyCode, event);
     }
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
